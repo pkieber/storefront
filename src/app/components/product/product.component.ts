@@ -15,7 +15,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class ProductComponent {
   @Input() product!: Product;
-  //@Output() productOutput: EventEmitter<Product> = new EventEmitter<Product>();
+  @Output() edit: EventEmitter<Product> = new EventEmitter<Product>();
+  @Output() delete: EventEmitter<Product> = new EventEmitter<Product>();
 
   /*
   ngOnInit() {
