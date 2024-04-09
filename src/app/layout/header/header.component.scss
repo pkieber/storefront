@@ -1,16 +1,13 @@
 .wrapper {
   width: 100%;
-
   border-bottom: 1px solid var(--border-color);
-
   padding: 2rem;
-
   box-sizing: border-box;
 
   a {
     text-decoration: none;
     font-weight: 300;
-    color: black;
+    color: white;
 
     &.active {
       font-weight: 900;
@@ -21,7 +18,7 @@
     height: 100%;
     object-fit: contain;
 
-    height: 2rem;
+    height: 3rem;
 
     margin-right: auto;
   }
