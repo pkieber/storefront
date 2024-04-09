@@ -31,18 +31,14 @@ export class EditPopupComponent {
 
   @Input() display: boolean = false;
   @Output() displayChange = new EventEmitter<boolean>();
-
   @Input() header!: string;
-
   @Input() product: Product = {
     name: '',
     image: '',
     price: '',
     rating: 0,
   };
-
   @Output() confirm = new EventEmitter<Product>();
-
 
   specialCharacterValidator(): ValidatorFn {
     return (control) => {
