@@ -26,7 +26,7 @@ export class HomeComponent {
 
   // Pagination
   totalRecords: number = 0;
-  rows: number = 12;
+  rows: number = 10;
 
 
   onPageChange(event: any) {
@@ -39,9 +39,9 @@ export class HomeComponent {
     this.productsService
       .getProducts('http://localhost:3000/clothes', { page, perPage })
       .subscribe({
-        next: (data: Products) => {
-          this.products = data.items;
-          this.totalRecords = data.total;
+        next: (products: Products) => {
+          this.products = products.items;
+          this.totalRecords = products.total;
         },
         error: (error) => {
           console.log(error);
@@ -52,5 +52,52 @@ export class HomeComponent {
 
   ngOnInit() {
     this.fetchProducts(0, this.rows);
+  }
+
+
+  // CRUD operations
+  editProduct(product: Product, id: number) {
+    this.productsService
+      .editProduct(`http://localhost:3000/clothes/${id}`, product)
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          this.fetchProducts(0, this.rows);
+          //this.resetPaginator();
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+  }
+
+  deleteProduct(id: number) {
+    this.productsService
+      .deleteProduct(`http://localhost:3000/clothes/${id}`)
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          this.fetchProducts(0, this.rows);
+          //this.resetPaginator();
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+  }
+
+  addProduct(product: Product) {
+    this.productsService
+      .addProduct(`http://localhost:3000/clothes`, product)
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          this.fetchProducts(0, this.rows);
+          //this.resetPaginator();
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
   }
 }
